@@ -29,6 +29,12 @@ const NameInput = styled.input`
   margin-left: 2%;
 `;
 
+const ConfrimButton = styled.button`
+  text-align: center;
+  margin: auto;
+  display: block;
+`;
+
 const OPTIONS = [
   { value: "apple", name: "사과" },
   { value: "banana", name: "바나나" },
@@ -91,16 +97,16 @@ function App() {
 
         <ContentInnerDiv>
           <ContentTitle>비밀번호</ContentTitle>
-          <input placeholder="PW" />
+          <input placeholder="PW" type="password" />
         </ContentInnerDiv>
 
         <ContentInnerDiv>
           <ContentTitle>비밀번호 확인</ContentTitle>
-          <input placeholder="Check PW" />
+          <input placeholder="Check PW" type="password" />
         </ContentInnerDiv>
       </ContentDiv>
 
-      <button>확인</button>
+      <ConfrimButton>확인</ConfrimButton>
     </div>
   );
 }
