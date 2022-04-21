@@ -16,17 +16,34 @@ const ContentDiv = styled.div`
 `;
 
 const ContentInnerDiv = styled.div`
-  margin-top: 3%;
+  margin-top: 2%;
   display: flex;
 `;
 
-const ContentTitle = styled.p`
+const ContentTitle = styled.label`
   margin-left: 3%;
+  width: 200px;
   font-size: 20px;
 `;
 
 const NameInput = styled.input`
-  margin-left: 2%;
+  width: 300px;
+`;
+
+const BirthTitle = styled.label`
+  margin-left: 0.5%;
+  margin-right: 2%;
+  font-size: 20px;
+`;
+
+const GenderTitle = styled.label`
+  margin-left: 0.5%;
+  margin-right: 2%;
+  font-size: 20px;
+`;
+
+const GenderDiv = styled.div`
+  /* align-items: center; */
 `;
 
 const ConfrimButton = styled.button`
@@ -67,43 +84,47 @@ function App() {
       </div>
 
       <ContentDiv>
-        <ContentInnerDiv>
-          <ContentTitle>이름</ContentTitle>
-          <NameInput placeholder="이름" />
-        </ContentInnerDiv>
+        <form>
+          <ContentInnerDiv>
+            <ContentTitle>이름</ContentTitle>
+            <NameInput placeholder="이름" />
+          </ContentInnerDiv>
 
-        <ContentInnerDiv>
-          <ContentTitle>생년월일</ContentTitle>
-          <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-          <ContentTitle>년</ContentTitle>
-          <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-          <ContentTitle>월</ContentTitle>
-          <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-          <ContentTitle>일</ContentTitle>
-        </ContentInnerDiv>
+          <ContentInnerDiv>
+            <ContentTitle>생년월일</ContentTitle>
+            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
+            <BirthTitle>년</BirthTitle>
+            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
+            <BirthTitle>월</BirthTitle>
+            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
+            <BirthTitle>일</BirthTitle>
+          </ContentInnerDiv>
 
-        <ContentInnerDiv onChange={(e) => console.log(123)}>
-          <ContentTitle>성별</ContentTitle>
-          <input type="radio" name="theme" value="MAN" />
-          남성
-          <input type="radio" name="theme" value="WOMAN" />
-          여성
-        </ContentInnerDiv>
+          <ContentInnerDiv onChange={(e) => console.log(123)}>
+            <ContentTitle>성별</ContentTitle>
+            {/* <GenderDiv> */}
+            <input type="radio" id="man" name="gender" value="man" />
+            <GenderTitle for="man">123성</GenderTitle>
+            <input type="radio" id="woman" name="gender" value="woman" />
+            <GenderTitle for="woman">여성</GenderTitle>
+            {/* </GenderDiv> */}
+          </ContentInnerDiv>
 
-        <ContentInnerDiv>
-          <ContentTitle>아이디</ContentTitle>
-          <input placeholder="ID" />
-        </ContentInnerDiv>
+          <ContentInnerDiv>
+            <ContentTitle>아이디</ContentTitle>
+            <input placeholder="ID" />
+          </ContentInnerDiv>
 
-        <ContentInnerDiv>
-          <ContentTitle>비밀번호</ContentTitle>
-          <input placeholder="PW" type="password" />
-        </ContentInnerDiv>
+          <ContentInnerDiv>
+            <ContentTitle>비밀번호</ContentTitle>
+            <input placeholder="PW" type="password" />
+          </ContentInnerDiv>
 
-        <ContentInnerDiv>
-          <ContentTitle>비밀번호 확인</ContentTitle>
-          <input placeholder="Check PW" type="password" />
-        </ContentInnerDiv>
+          <ContentInnerDiv>
+            <ContentTitle>비밀번호 확인</ContentTitle>
+            <input placeholder="Check PW" type="password" />
+          </ContentInnerDiv>
+        </form>
       </ContentDiv>
 
       <ConfrimButton>확인</ConfrimButton>
