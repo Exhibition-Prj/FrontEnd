@@ -14,6 +14,8 @@ const ContentDiv = styled.div`
   border: 3px solid;
   margin-left: 5%;
   margin-right: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 `;
 
 const ContentInnerDiv = styled.div`
@@ -27,8 +29,8 @@ const ContentTitle = styled.label`
   font-size: 20px;
 `;
 
-const NameInput = styled.input`
-  width: 300px;
+const TextInput = styled.input`
+  width: 200px;
 `;
 
 const BirthTitle = styled.label`
@@ -44,7 +46,8 @@ const GenderTitle = styled.label`
 `;
 
 const GenderDiv = styled.div`
-  /* align-items: center; */
+  vertical-align: middle;
+  width: 300px;
 `;
 
 const ConfrimButton = styled.button`
@@ -53,7 +56,7 @@ const ConfrimButton = styled.button`
   display: block;
 `;
 
-const OPTIONS = [
+const YearOptions = [
   { value: "apple", name: "사과" },
   { value: "banana", name: "바나나" },
   { value: "orange", name: "오렌지" },
@@ -111,42 +114,41 @@ function Enroll() {
         <form>
           <ContentInnerDiv>
             <ContentTitle>이름</ContentTitle>
-            <NameInput placeholder="이름" />
+            <TextInput placeholder="이름" />
           </ContentInnerDiv>
 
           <ContentInnerDiv>
-            <ContentTitle>생년월일</ContentTitle>
-            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-            <BirthTitle>년</BirthTitle>
-            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-            <BirthTitle>월</BirthTitle>
-            <SelectBox options={OPTIONS} defaultValue="banana"></SelectBox>
-            <BirthTitle>일</BirthTitle>
+            <ContentTitle>닉네임</ContentTitle>
+            <TextInput placeholder="닉네임" />
           </ContentInnerDiv>
 
           <ContentInnerDiv onChange={(e) => console.log(123)}>
             <ContentTitle>성별</ContentTitle>
-            {/* <GenderDiv> */}
-            <input type="radio" id="man" name="gender" value="man" />
-            <GenderTitle for="man">남성</GenderTitle>
-            <input type="radio" id="woman" name="gender" value="woman" />
-            <GenderTitle for="woman">여성</GenderTitle>
-            {/* </GenderDiv> */}
+            <GenderDiv>
+              <input type="radio" id="man" name="gender" value="man" />
+              <GenderTitle for="man">남성</GenderTitle>
+              <input type="radio" id="woman" name="gender" value="woman" />
+              <GenderTitle for="woman">여성</GenderTitle>
+            </GenderDiv>
           </ContentInnerDiv>
 
           <ContentInnerDiv>
             <ContentTitle>아이디</ContentTitle>
-            <input placeholder="ID" />
+            <TextInput placeholder="ID" />
           </ContentInnerDiv>
 
           <ContentInnerDiv>
             <ContentTitle>비밀번호</ContentTitle>
-            <input placeholder="PW" type="password" onChange={passwordChange} />
+            <TextInput
+              placeholder="PW"
+              type="password"
+              onChange={passwordChange}
+            />
           </ContentInnerDiv>
 
           <ContentInnerDiv>
             <ContentTitle>비밀번호 확인</ContentTitle>
-            <input
+            <TextInput
               placeholder="Check PW"
               type="password"
               onChange={passwordckChange}
