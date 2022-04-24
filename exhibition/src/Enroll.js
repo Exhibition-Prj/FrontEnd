@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import AddressButton from "./AddressButton";
 import styled from "styled-components";
 
 const JoinTitle = styled.h1`
@@ -33,12 +33,6 @@ const TextInput = styled.input`
   width: 200px;
 `;
 
-const BirthTitle = styled.label`
-  margin-left: 0.5%;
-  margin-right: 2%;
-  font-size: 20px;
-`;
-
 const GenderTitle = styled.label`
   margin-left: 0.5%;
   margin-right: 2%;
@@ -56,30 +50,70 @@ const ConfrimButton = styled.button`
   display: block;
 `;
 
-const YearOptions = [
-  { value: "apple", name: "사과" },
-  { value: "banana", name: "바나나" },
-  { value: "orange", name: "오렌지" },
-];
+const Select = styled.select`
+  display: block;
+  padding: 8px 8px;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid;
+  border-radius: 5px;
+  color: inherit;
+  background-color: transparent;
+  &:focus {
+    border-color: gredy;
+  }
+  margin-left: 0.5%;
+`;
 
-const SelectBox = (props) => {
-  return (
-    <select>
-      {props.options.map((option) => (
-        <option
-          value={option.value}
-          defaultValue={props.defaultValue === option.value}
-        >
-          {option.name}
-        </option>
-      ))}
-    </select>
-  );
+const EmailTextInput = styled.input`
+  margin-left: 0.5%;
+`;
+
+const Abtn = () => {
+  return <h1>123</h1>;
+};
+
+const No = () => {
+  return <h1>No</h1>;
 };
 
 function Enroll() {
+  const selectList = [
+    "이메일 선택",
+    "@naver.com",
+    "@daum.net",
+    "@gmail.com",
+    "직접 입력",
+  ];
+
+  const handleSelect = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const [id, setID] = useState("");
   const [pw, setPW] = useState(false);
   const [pwck, setPWck] = useState(false);
+  const [email, setEmail] = useState("");
+  const [changeEmail, setChangeEmail] = useState("");
+
+  const [addressbtn, setAddressBtn] = useState(false);
+
+  function EmailInput() {
+    if (email === "직접 입력") {
+      return (
+        <TextInput placeholder="email" type="email" onChange={emailChange} />
+      );
+    }
+    return null;
+  }
+
+  const adressbuttonClick = () => {
+    setAddressBtn(true);
+  };
+
+  const emailChange = (e) => {
+    setChangeEmail(e.target.value);
+  };
 
   const passwordChange = (e) => {
     setPW(e.target.value);
@@ -97,7 +131,16 @@ function Enroll() {
     }
   };
 
+  // const idtest = () => {
+  //   if (email !== "직접 입력" && changeEmail) {
+  //     setID(changeEmail);
+  //   } else {
+  //     setID(email);
+  //   }
+  // };
+
   const ConfrimClick = () => {
+    // idtest();
     pwtest();
   };
 
@@ -118,23 +161,16 @@ function Enroll() {
           </ContentInnerDiv>
 
           <ContentInnerDiv>
-            <ContentTitle>닉네임</ContentTitle>
-            <TextInput placeholder="닉네임" />
-          </ContentInnerDiv>
-
-          <ContentInnerDiv onChange={(e) => console.log(123)}>
-            <ContentTitle>성별</ContentTitle>
-            <GenderDiv>
-              <input type="radio" id="man" name="gender" value="man" />
-              <GenderTitle for="man">남성</GenderTitle>
-              <input type="radio" id="woman" name="gender" value="woman" />
-              <GenderTitle for="woman">여성</GenderTitle>
-            </GenderDiv>
-          </ContentInnerDiv>
-
-          <ContentInnerDiv>
             <ContentTitle>아이디</ContentTitle>
             <TextInput placeholder="ID" />
+            <EmailInput />
+            <Select onChange={handleSelect} value={email}>
+              {selectList.map((item) => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </Select>
           </ContentInnerDiv>
 
           <ContentInnerDiv>
@@ -153,6 +189,27 @@ function Enroll() {
               type="password"
               onChange={passwordckChange}
             />
+          </ContentInnerDiv>
+
+          <ContentInnerDiv>
+            <ContentTitle>닉네임</ContentTitle>
+            <TextInput placeholder="닉네임" />
+          </ContentInnerDiv>
+
+          <ContentInnerDiv>
+            <ContentTitle>주소</ContentTitle>
+            <button onClick={adressbuttonClick}>주소 검색</button>
+            {addressbtn ? <h1>팝업창 띄우기</h1> : null}
+          </ContentInnerDiv>
+
+          <ContentInnerDiv onChange={(e) => console.log(123)}>
+            <ContentTitle>성별</ContentTitle>
+            <GenderDiv>
+              <input type="radio" id="man" name="gender" value="man" />
+              <GenderTitle htmlFor="man">남성</GenderTitle>
+              <input type="radio" id="woman" name="gender" value="woman" />
+              <GenderTitle htmlFor="woman">여성</GenderTitle>
+            </GenderDiv>
           </ContentInnerDiv>
         </form>
       </ContentDiv>
