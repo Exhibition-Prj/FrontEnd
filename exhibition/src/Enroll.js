@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AddressButton from "./AddressButton";
 import styled from "styled-components";
+import Address from "./Address";
 
 const JoinTitle = styled.h1`
   text-align: center;
@@ -94,6 +94,7 @@ function Enroll() {
   const [pw, setPW] = useState(false);
   const [pwck, setPWck] = useState(false);
   const [email, setEmail] = useState("");
+  const [emailText, setEmailText] = useState("");
   const [changeEmail, setChangeEmail] = useState("");
 
   const [addressbtn, setAddressBtn] = useState(false);
@@ -101,11 +102,20 @@ function Enroll() {
   function EmailInput() {
     if (email === "직접 입력") {
       return (
-        <TextInput placeholder="email" type="email" onChange={emailChange} />
+        <TextInput
+          onChange={onChangeTextInput}
+          placeholder="email"
+          type="email"
+          value={emailText}
+        />
       );
     }
     return null;
   }
+
+  const onChangeTextInput = (e) => {
+    setEmailText(e.target.value);
+  };
 
   const adressbuttonClick = () => {
     setAddressBtn(true);
@@ -142,6 +152,18 @@ function Enroll() {
   const ConfrimClick = () => {
     // idtest();
     pwtest();
+  };
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // 팝업창 열기
+  const openPostCode = () => {
+    setIsPopupOpen(true);
+  };
+
+  // 팝업창 닫기
+  const closePostCode = () => {
+    setIsPopupOpen(false);
   };
 
   return (
@@ -198,8 +220,19 @@ function Enroll() {
 
           <ContentInnerDiv>
             <ContentTitle>주소</ContentTitle>
-            <button onClick={adressbuttonClick}>주소 검색</button>
-            {addressbtn ? <h1>팝업창 띄우기</h1> : null}
+            <button
+              onClick={() =>
+                window.open(
+                  "Address",
+                  "_blank",
+                  "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=500,height=500"
+                )
+              }
+            >
+              주소 검색
+            </button>
+            {/* {isPopupOpen ? <Address /> : null}
+            <button onClick={openPostCode}>예제</button> */}
           </ContentInnerDiv>
 
           <ContentInnerDiv onChange={(e) => console.log(123)}>
