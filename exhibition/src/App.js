@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Enroll from "./Enroll";
 import Address from "./Address";
+import Login from "./Login";
 import Main from "./Main";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Main />}></Route>
           <Route path="/Enroll" element={<Enroll />}></Route>
           <Route path="/Address" element={<Address />}></Route>
+          <Route path="/Login" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
