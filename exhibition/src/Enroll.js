@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Address from "./Address";
+import Modal from "./Modal";
 
 const JoinTitle = styled.h1`
   text-align: center;
@@ -65,18 +66,6 @@ const Select = styled.select`
   margin-left: 0.5%;
 `;
 
-const EmailTextInput = styled.input`
-  margin-left: 0.5%;
-`;
-
-const Abtn = () => {
-  return <h1>123</h1>;
-};
-
-const No = () => {
-  return <h1>No</h1>;
-};
-
 function Enroll() {
   const selectList = [
     "이메일 선택",
@@ -99,7 +88,7 @@ function Enroll() {
 
   const [addressbtn, setAddressBtn] = useState(false);
 
-  function EmailInput() {
+  const EmailInput = () => {
     if (email === "직접 입력") {
       return (
         <TextInput
@@ -111,7 +100,7 @@ function Enroll() {
       );
     }
     return null;
-  }
+  };
 
   const onChangeTextInput = (e) => {
     setEmailText(e.target.value);
@@ -154,16 +143,29 @@ function Enroll() {
     pwtest();
   };
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // 팝업창 열기
-  const openPostCode = () => {
-    setIsPopupOpen(true);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
-  // 팝업창 닫기
-  const closePostCode = () => {
-    setIsPopupOpen(false);
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+    console.log(fullAddress);
   };
 
   return (
@@ -174,7 +176,6 @@ function Enroll() {
         <Title>Exhibition에 오신 것을 환영합니다.</Title>
         <Title>계정 정보를 입력해주세요.</Title>
       </div>
-
       <ContentDiv>
         <form>
           <ContentInnerDiv>
@@ -247,6 +248,8 @@ function Enroll() {
         </form>
       </ContentDiv>
 
+      <button onClick={openModal}>모달팝업</button>
+      <Modal open={modalOpen} close={closeModal} header="Modal heading"></Modal>
       <ConfrimButton onClick={ConfrimClick}>확인</ConfrimButton>
     </div>
   );

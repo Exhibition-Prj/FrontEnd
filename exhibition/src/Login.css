@@ -1,0 +1,10 @@
+.kakao_btn {
+  background-image: url("../public/kakao_login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 10px auto;
+}
+
+.btn {
+  background-color: aliceblue;
+}

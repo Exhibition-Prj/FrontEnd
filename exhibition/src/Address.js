@@ -2,6 +2,18 @@ import React from "react";
 import DaumPostCode from "react-daum-postcode";
 
 const Address = () => {
+  const width = 595;
+  const height = 450;
+  const modalStyle = {
+    position: "absolute",
+    top: 1000,
+    marginTop: "300px",
+    left: "-178px",
+    zIndex: "100",
+    border: "3px solid black",
+    overflow: "hidden",
+  };
+
   const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -20,7 +32,13 @@ const Address = () => {
 
   return (
     <div>
-      <DaumPostCode onComplete={handleComplete} className="post-code" />
+      <DaumPostCode
+        onComplete={handleComplete}
+        className="post-code"
+        width={width}
+        height={height}
+        style={modalStyle}
+      />
     </div>
   );
 };
