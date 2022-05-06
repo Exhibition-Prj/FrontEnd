@@ -4,6 +4,8 @@ import Enroll from "./Enroll";
 import Address from "./Address";
 import Login from "./Login";
 import Main from "./Main";
+import KakaoRedirectHandler from "./kakao/KakaoRedirectHandler";
+import Auth from "./Auth";
 
 function App() {
   return (
@@ -14,6 +16,10 @@ function App() {
           <Route path="/Enroll" element={<Enroll />}></Route>
           <Route path="/Address" element={<Address />}></Route>
           <Route path="/Login" element={<Login />}></Route>
+          <Route
+            path="/oauth/callback/kakao"
+            element={<KakaoRedirectHandler />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
